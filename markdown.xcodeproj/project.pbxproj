@@ -46,7 +46,7 @@
 			outputFiles = (
 				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).m",
 			);
-			script = "[ -f greg/Makefile ] || { cat <<MESSAGE; exit 1; }\n\nAttributedMarkdown requires the greg parser generator.  Run the following to get it.\n\n    git submodule update --init --recursive\n\nMESSAGE\nSDKROOT= make -C $TEMP_DIR -f $INPUT_FILE_DIR/greg/Makefile VPATH=$INPUT_FILE_DIR/greg || exit $?\n$TEMP_DIR/greg -o $DERIVED_FILES_DIR/${INPUT_FILE_BASE}.m $INPUT_FILE_PATH";
+			script = "bin/greg -o $DERIVED_FILES_DIR/${INPUT_FILE_BASE}.m $INPUT_FILE_PATH";
 		};
 /* End PBXBuildRule section */
 
@@ -301,7 +301,7 @@
 			name = HelloMarkdownTests;
 			productName = HelloMarkdownTests;
 			productReference = F303BA4415FFB748008E18F0 /* HelloMarkdownTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		F3DB478915FFB8C800FC0AA0 /* attr-markdown-iOS */ = {
 			isa = PBXNativeTarget;
@@ -464,9 +464,9 @@
 		6334F21E130C8AE1000D1180 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				"ARCHS[sdk=iphoneos*]" = "$(NATIVE_ARCH_ACTUAL)";
-				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=macosx*]" = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -489,7 +489,7 @@
 		6334F21F130C8AE1000D1180 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -630,7 +630,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -640,7 +639,6 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "";
 				LIBRARY_SEARCH_PATHS = "";
-				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = "attr-markdown-iOS";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
@@ -652,7 +650,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -662,7 +659,6 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "";
 				LIBRARY_SEARCH_PATHS = "";
-				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = "attr-markdown-iOS";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
